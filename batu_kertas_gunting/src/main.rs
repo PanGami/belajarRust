@@ -4,7 +4,7 @@ use rand::Rng;
 fn main() {
     let pilihan_user = user_input();
     let pilihan_komputer = computer_input();
-
+    
     println!("Pilihan user: {}", formatter(pilihan_user));
     println!("Pilihan komputer: {}", formatter(pilihan_komputer));    
     
