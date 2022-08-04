@@ -3,45 +3,38 @@ use rand::Rng;
 
 fn main() {
     let pilihan_user = user_input();
-    // processing(pilihan_user);
+    println!("Test {}", pilihan_user);
 }
 
-fn processing(user_input: char){
-    print!("{}", user_input);
-}
-
-fn user_input(){    
-    let mut user_input = String::new();    
-    loop{       
-        println!("Masukkan huruf awal pilihan! ");
-        println!("Kertas : k, Gunting : g, Batu : b");
-
+fn user_input() -> u32{    
+    let value;     
+    loop{               
+        println!("Input pilihan anda! Kertas[0], Gunting[1], Batu[2]");
+        let mut user_input = String::new();   
         io::stdin()
             .read_line(&mut user_input)
             .expect("Gagal membaca input!");    
                 
-        // println!("TEST CONVERTED INPUT ! {}", converted_input);
-        // println!("TEST USER INPUT ! {}", user_input);
-        let mut converted_input = user_input.to_lowercase().chars().next().unwrap();
-        match converted_input {
-            'b' =>{
-                println!("Anda memilih batu!");
-                break;
-            },
-            'k' =>{
-                println!("Anda memilih kertas!");
-                break;
-            },
-            'g' =>{
-                println!("Anda memilih gunting!");
-                break;
-            },
-            _ =>{
+        let converted_input:u32 = match user_input.trim().parse(){
+            Ok(num) => num,
+            Err(_) => {
                 println!("Input tidak valid!");
-                continue;
-            }
-        }                
-        user_input;     
-        break;   
+                continue
+            },
+        };
+
+        if converted_input < 3{
+            value = converted_input;
+            break;
+        } else {
+            println!("Mohon input angka antara 1-3!");
+            continue;
+        }
     }
+    return value;
+}
+
+fn computer_input() -> u32{
+    let mut random_number = rand::thread_rng().gen_range(0..=2);    
+    return random_number;
 }
