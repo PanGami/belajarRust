@@ -3,12 +3,12 @@ use rand::Rng;
 
 fn main() {
     let pilihan_user = user_input();
-    let pilihan_komputer = komputer_input();
+    let pilihan_komputer = computer_input();
 
     println!("Pilihan user: {}", formatter(pilihan_user));
-    println!("Pilihan komputer: {}", formatter(pilihan_komputer));
+    println!("Pilihan komputer: {}", formatter(pilihan_komputer));    
     
-    //let hasil = hasil_game(pilihan_user, pilihan_komputer);
+    println!("{}",game_process(pilihan_user, pilihan_komputer));
 }
 
 fn user_input() -> u32{    
@@ -39,17 +39,31 @@ fn user_input() -> u32{
     return value;
 }
 
-fn komputer_input() -> u32{
+fn computer_input() -> u32{
     let random_number = rand::thread_rng().gen_range(0..=2);    
     return random_number;
 }
 
-fn formatter(pilihan_angka: u32) -> String{
+fn formatter(pilihan_angka: u32) -> &'static str{
     let hasil = match pilihan_angka {
-        0 => "Batu".to_string(),
-        1 => "Kertas".to_string(),
-        2 => "Gunting".to_string(),
-        _ => "Tidak ada".to_string(),
+        0 => "Batu",
+        1 => "Kertas",
+        2 => "Gunting",
+        _ => "Tidak ada",
     };
     return hasil;
+}
+
+fn game_process(pilihan_user: u32, pilihan_komputer: u32) -> String{
+    if pilihan_user == pilihan_komputer{
+        return "Draw".to_string();
+    } else if pilihan_user == 0 && pilihan_komputer == 2{
+        return "Menang".to_string();
+    } else if pilihan_user == 1 && pilihan_komputer == 0{
+        return "Menang".to_string();
+    } else if pilihan_user == 2 && pilihan_komputer == 1{
+        return "Menang".to_string();
+    } else {
+        return "Kalah".to_string();
+    }
 }
