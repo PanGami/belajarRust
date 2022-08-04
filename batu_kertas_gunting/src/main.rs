@@ -1,10 +1,22 @@
 use std::io;
 use rand::Rng;
 
+/*  
+    =============== HERE Short Docs ==================
+    Computer get choices from rand::Rng (random number)
+    User input with io::stdin()        (standard input)
+    ================ About Functions ==================
+    Make functions to make main function more readable
+    main()           : Is the core of the program and handles all functions
+    user_input()     : Handle input(u32 / unsigned integer) and handle error
+    computer_input() : Handle computer choices(with rand)
+    formatter()      : Handle from(u32 / unsigned integer) to (String / "batu kertas gunting")
+    game_process()   : Handle winner and loser
+*/
 fn main() {
     let pilihan_user = user_input();
     let pilihan_komputer = computer_input();
-    
+
     println!("Pilihan user: {}", formatter(pilihan_user));
     println!("Pilihan komputer: {}", formatter(pilihan_komputer));    
     
